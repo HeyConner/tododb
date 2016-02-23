@@ -41,5 +41,31 @@
 
             $this->assertEquals([$test_task, $test_task2], $result);
         }
+
+        function test_getId()
+        {
+            $description = "Wash the dog";
+            $id = 1;
+            $test_Task = new Task($description, $id);
+
+            $result = $test_Task->getId();
+
+            $this->assertEquals(1, $result);
+        }
+
+        function test_find(){
+            $description = "FIRST TASK";
+            $description2 = "last task";
+            $test_task = new Task($description);
+            $test_task->save();
+
+            $test_task2 = new Task($description2);
+            $test_task2->save();
+
+            $id = $test_task->getId();
+            $result = Task::find($id);
+
+            $this->assertEquals($test_task, $result);
+        }
     }
 ?>
